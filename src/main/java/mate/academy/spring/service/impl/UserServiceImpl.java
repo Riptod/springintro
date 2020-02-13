@@ -1,7 +1,6 @@
 package mate.academy.spring.service.impl;
 
 import mate.academy.spring.dao.UserDao;
-import mate.academy.spring.dao.impl.UserDaoImpl;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 
