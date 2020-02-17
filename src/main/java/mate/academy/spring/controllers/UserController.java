@@ -21,20 +21,15 @@ public class UserController {
 
     @GetMapping(value = "/{userId}")
     public UserResponseDto get(@PathVariable Long userId) {
-        UserResponseDto dto = new UserResponseDto();
         User user = userService.get(userId);
-        dto.setEmail(user.getEmail());
-        dto.setPassword(user.getPassword());
-        return dto;
+        return new UserResponseDto(user.getEmail(), user.getPassword());
     }
 
     @GetMapping(value = "/getAll")
     public List<UserResponseDto> getAll() {
         List<UserResponseDto> usersDto = new ArrayList<>();
         for (User user : userService.listUsers()) {
-            UserResponseDto userDto = new UserResponseDto();
-            userDto.setEmail(user.getEmail());
-            userDto.setPassword(user.getPassword());
+            UserResponseDto userDto = new UserResponseDto(user.getEmail(), user.getPassword());;
             usersDto.add(userDto);
         }
         return usersDto;
@@ -47,5 +42,4 @@ public class UserController {
         userService.add(new User("3", "3"));
         userService.add(new User("4", "4"));
     }
-
 }

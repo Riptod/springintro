@@ -4,6 +4,14 @@ public class UserResponseDto {
     private String email;
     private String password;
 
+    public UserResponseDto(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public UserResponseDto() {
+    }
+
     public String getEmail() {
         return email;
     }
