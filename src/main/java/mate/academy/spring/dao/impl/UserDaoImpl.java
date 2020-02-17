@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             return session.get(User.class, id);
         } catch (Exception e) {
-            throw new DataProcessingException("Cannot get user " + id, e);
+            throw new DataProcessingException("Cannot get user by id: " + id, e);
         }
     }
 }
