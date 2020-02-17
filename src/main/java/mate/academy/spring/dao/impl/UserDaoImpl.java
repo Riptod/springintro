@@ -1,12 +1,10 @@
 package mate.academy.spring.dao.impl;
 
+import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
-
-import java.util.List;
-
-import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,7 +42,16 @@ public class UserDaoImpl implements UserDao {
             criteriaQuery.from(User.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Cannot show all movies from database", e);
+            throw new DataProcessingException("Cannot show all users from database", e);
+        }
+    }
+
+    @Override
+    public User get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(User.class, id);
+        } catch (Exception e) {
+            throw new DataProcessingException("Cannot get user by id: " + id, e);
         }
     }
 }
